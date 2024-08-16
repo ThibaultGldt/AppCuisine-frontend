@@ -26,13 +26,13 @@ export class SignInComponent {
     })
   }
 
-  login(login: string, password: string) {
+  login() {
     const value = this.signInForm.value;
 
     if(value.email && value.password) {
       this.authService.login(value.email, value.password).subscribe(
         () => {
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('');
         }
       )
     }
