@@ -25,7 +25,7 @@ export class AuthService {
   }
 
   private setSession(token: TokenModel) {
-    const expiresAt = Date.now() + token.expiresIn;
+    const expiresAt = new Date().getTime() + token.expiresIn;
 
     localStorage.setItem(this.TOKEN_KEY, token.token);
     localStorage.setItem(this.TOKEN_EXPIRE, expiresAt.toString());
@@ -42,12 +42,12 @@ export class AuthService {
 
   public isLoggedIn() {
     return !!localStorage.getItem(this.TOKEN_KEY)
-      && this.isExpired();
+      && !  this.isExpired();
   }
 
   isExpired() {
     const expiresAt = localStorage.getItem(this.TOKEN_EXPIRE);
-    return expiresAt ? Date.now() < new Date(expiresAt).getDate() : false;
+    return expiresAt ? new Date().getTime() > parseInt(expiresAt, 10  ) : false;
   }
 
   isLoggedOut() {

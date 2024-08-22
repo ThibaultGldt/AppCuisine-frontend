@@ -1,6 +1,6 @@
 import {Routes} from '@angular/router';
 import {LandingPageComponent} from "./main/landing-page/landing-page.component";
-import {SignInComponent} from "./main/sign-in/sign-in.component";
+import {SignInComponent} from "./main/auth/sign-in/sign-in.component";
 import {authGuard} from "./config/auth.guard";
 
 export const routes: Routes = [
@@ -9,7 +9,7 @@ export const routes: Routes = [
     redirectTo: 'dashboard',
     pathMatch: 'full'
   }, {
-    path: ' dashboard',
+    path: 'dashboard',
     component: LandingPageComponent,
     canActivate: [authGuard]
   }, {
